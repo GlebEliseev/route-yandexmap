@@ -21,10 +21,17 @@ class App extends Component {
         <YMaps>
          <div className="App">
            <Map defaultState={{ center: [55.75, 37.57], zoom: 12 }} height={'100vh'} width={'50vw'} >
+             {/*TODO: Draggable should redraw the route and recalculate the placemark*/}
              {this.state.placemarks.map((mark, i, arr) =>
                <Placemark
                  modules={['geoObject.addon.balloon']}
                  geometry={mark}
+                 properties={{
+                   balloonContentBody: mark,
+                 }}
+                 options={{
+                   draggable: true
+                 }}
                />
              )}
              <Polyline
