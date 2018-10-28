@@ -10,16 +10,21 @@ class App extends Component {
       placemarks: [[55.75, 37.57], [55.74, 37.57], [55.75, 37.56]]
     };
   }
+
+  handleClick(index) {
+    this.setState(prevState => ({ placemarks: prevState.placemarks.filter((_, i) => i !== index)}));
+  }
+
   render() {
     return (
       <div className="container">
         <YMaps>
          <div className="App">
            <Map defaultState={{ center: [55.75, 37.57], zoom: 12 }} height={'100vh'} width={'50vw'} >
-             {this.state.placemarks.map((mark) =>
+             {this.state.placemarks.map((mark, i, arr) =>
                <Placemark
                  modules={['geoObject.addon.balloon']}
-                 defaultGeometry={mark}
+                 geometry={mark}
                />
              )}
              <Polyline
@@ -46,8 +51,8 @@ class App extends Component {
          </button>
          <span>Current points: </span>
          <ul>
-           {this.state.placemarks.map((mark) =>
-             <li>{mark[0]}, {mark[1]}</li>
+           {this.state.placemarks.map((mark, i, arr) =>
+             <li onClick={this.handleClick.bind(this, i)}>{mark[0]}, {mark[1]}</li>
            )}
          </ul>
        </div>
