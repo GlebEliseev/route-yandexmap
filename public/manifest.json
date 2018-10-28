@@ -1,0 +1,8 @@
+{
+  "short_name": "Route creation app",
+  "name": "Create random route in Yandex Maps",
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}
